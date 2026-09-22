@@ -1,0 +1,82 @@
+{
+  "name": "@you/dsh-drawio-plugin",
+  "version": "0.1.3",
+  "description": "Draw.io diagrams in DeepSeek Harness conversations: drawio_render tool, inline SVG cards, fullscreen embed editor",
+  "type": "module",
+  "main": "host.mjs",
+  "exports": {
+    ".": "./host.mjs",
+    "./client": "./client/lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "host.mjs",
+    "client/lib/",
+    "cordis.patch.yml",
+    "vendor/drawio/",
+    "skills/",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-renderer",
+        "@deepseek-ai/dsh-client-ui-tool",
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-resources",
+        "@deepseek-ai/dsh-client-ui-chat",
+        "@deepseek-ai/dsh-client-ui-conversation"
+      ]
+    }
+  },
+  "scripts": {
+    "build": "tsdown --config client/tsdown.config.ts",
+    "fetch-drawio": "node scripts/fetch-drawio.mjs",
+    "test": "node --test test/*.test.mjs",
+    "prepack": "npm run build"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-fs": ">=0.1.0-rc.6 <0.2.0 || ^0.1.5-rc.1 || ^0.1.6-alpha.1",
+    "@deepseek-ai/dsh-sandbox": ">=0.1.0-rc.6 <0.2.0 || ^0.1.5-rc.1 || ^0.1.6-alpha.1",
+    "@deepseek-ai/dsh-skill-filesystem": ">=0.1.0-rc.6 <0.2.0 || ^0.1.5-rc.1 || ^0.1.6-alpha.1",
+    "@deepseek-ai/dsh-tools": ">=0.1.0-rc.6 <0.2.0 || ^0.1.5-rc.1 || ^0.1.6-alpha.1"
+  },
+  "devDependencies": {
+    "@deepseek-ai/dsh-api-session-controller": "^0.1.6-alpha.2",
+    "@deepseek-ai/dsh-client-locale": "^0.1.6-alpha.2",
+    "@deepseek-ai/dsh-client-resources": "^0.1.6-alpha.2",
+    "@deepseek-ai/dsh-client-ui-chat": "^0.1.6-alpha.2",
+    "@deepseek-ai/dsh-client-ui-conversation": "^0.1.6-alpha.2",
+    "@deepseek-ai/dsh-client-ui-renderer": "^0.1.6-alpha.2",
+    "@deepseek-ai/dsh-client-ui-session": "^0.1.6-alpha.2",
+    "@deepseek-ai/dsh-client-ui-slots": "^0.1.6-alpha.2",
+    "@deepseek-ai/dsh-client-ui-tool": "^0.1.6-alpha.2",
+    "@deepseek-ai/dsh-tools": "^0.1.6-alpha.2",
+    "@deepseek-ai/dsh-typert-protocol": "^0.1.6-alpha.2",
+    "@types/node": "^24.13.6",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tsdown": "^0.15.0",
+    "typescript": "^5.6.0"
+  },
+  "engines": {
+    "node": "^22.19.0 || >=24"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "drawio",
+    "diagram"
+  ],
+  "license": "Apache-2.0"
+}

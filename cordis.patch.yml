@@ -1,0 +1,7 @@
+# 双面包单行挂载:包根导出 host.mjs(Host 半),Client 半由 dsh-client-modules
+# 凭 package.json 的 dsh.client 声明自动扫描 ./client 并注入 __DSH_BOOT__。
+# 不要再插 '@you/dsh-drawio-plugin/client' 第二行——vendored loader 对 /client
+# 后缀没有特判,会把浏览器 bundle 当 Node 插件 import。
+- insert:
+    - id: dsh-drawio
+      name: '@you/dsh-drawio-plugin'
